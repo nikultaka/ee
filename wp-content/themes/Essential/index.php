@@ -6,8 +6,14 @@ Theme URI: http://wordpress.org/themes/Essential
  global $post;
     $args = array( 'numberposts' => 10, 'category_name' => 'portfolio' );
     $posts = get_posts( $args );
+    $homnepost = array( 'numberposts' => 1, 'category_name' => 'home' );
+    $home = get_posts( $homnepost );
     
-get_header();
+//    echo '<pre>';
+//    print_r($short_description);
+//    die;
+     
+    get_header();
 
 ?>
 <div class="header-top">
@@ -29,6 +35,18 @@ get_header();
 <!-- banner -->
 
 </header>
+<?php
+foreach ($home as $home_post){
+$experince= get_field('experince',$home_post->ID);  
+$short_description= get_field('short_discription',$home_post->ID);  
+  
+?>
+<?php if (has_post_thumbnail( $home_post->ID ) ): ?>
+                    <?php $image_home_post = wp_get_attachment_image_src( get_post_thumbnail_id( $home_post->ID ), 'single-post-thumbnail' ); ?>
+                   
+               
+                  <?php endif; ?>
+                
 <section class="layer-100">
 
     <div class="container">
@@ -41,9 +59,9 @@ get_header();
                         <div class="col-lg-7 col-xs-12 col-md-6 col-sm-12">
                             <div class="visual">
                                 <figure class="brand-bg">
-                                    <img class="img-responsive" src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/farzana.jpg" alt="farzana"/>
+                                    <img class="img-responsive" src="<?php echo $image_home_post[0]; ?>" alt="<?php echo $home_post->post_title;?>"/>
                                     <figcaption>
-                                        <h1>12<span>years of experince</span></h1>
+                                        <h1><?php echo $experince;?><span>years of experince</span></h1>
 
                                     </figcaption>	
                                 </figure>
@@ -53,10 +71,10 @@ get_header();
                         <div class="col-lg-5 col-xs-12 col-md-6 col-sm-12">
                             <div class="para">
                                 <figcaption>
-                                    <h1>Farzana Mamun</h1>
-                                    <p>One of NYC’s luxery designers, Farzana went to Parsons School of Design and received a B.A. from City University of New York. At the age of 19, she moved from Dhaka, Bangladesh to New York City.</p>
+                                    <h1><?php echo $home_post->post_title;?></h1>
+                                    <p><?php echo $short_description;?></p>
 
-                                    <p>She started in the design industry in 2005 as an assistant designer for Colombo Mobili showroom in the New York Design Center.</p>
+                                   
                                     <a class="read-bt" target="_blank" href="#">Read More</a>
                                 </figcaption>
                             </div>
@@ -71,7 +89,7 @@ get_header();
     </div>
 
 </section>
-
+<?php } ?>
 <section class="layer-100">
 
     <div class="container">
@@ -86,7 +104,10 @@ get_header();
 
     <div class="card-section">
         <div class="row responsive-card">
-            <?php foreach ($posts as $post_data){ ?>
+            <?php foreach ($posts as $post_data){
+                $short_description_portfolio= get_field('short_discription',$post_data->ID);  
+
+                ?>
             <div class="col-lg-3 col-xs-12 col-md-6 col-sm-6">
                 <?php if (has_post_thumbnail( $post_data->ID ) ): ?>
                     <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_data->ID ), 'single-post-thumbnail' ); ?>
@@ -99,7 +120,7 @@ get_header();
                         <img src="<?php echo $image[0]; ?>" style="height: 600px;" alt="<?php echo $post_data->post_title ?>" />
                         <figcaption class="gradient">
                             <h2><?php echo $post_data->post_title; ?></h2>
-                            <p><?php echo $post_data->post_content; ?></p>
+                            <p><?php echo $short_description_portfolio; ?></p>
                             <a href="<?php echo $post_data->guid; ?>" class="card-btn">See project</a>
                         </figcaption>	
 
@@ -109,59 +130,6 @@ get_header();
 
             </div>
             <?php } ?>
-
-<!--            <div class="col-lg-3 col-xs-12 col-md-6 col-sm-6">
-                <div class="card">
-                    <figure>
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/2.jpg" alt="img02" />
-                        <figcaption class="gradient">
-                            <h2>Uppereast</h2>
-                            <p>Study - walnut - hand made inlay and leather top desk, leather seat armchair set with the Empire style bookcase</p>
-                            <a href="#" class="card-btn">See project</a>
-                        </figcaption>	
-                    </figure>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-12 col-md-6 col-sm-6">
-                <div class="card">
-                    <figure>
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/3-3.jpg" alt="img02" />
-                        <figcaption class="gradient">
-                            <h2>E-Design</h2>
-                            <p>Study - walnut - hand made inlay and leather top desk, leather seat armchair set with the Empire style bookcase</p>
-                            <a href="#" class="card-btn">See project</a>
-                        </figcaption>	
-                    </figure>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-12 col-md-6 col-sm-6">
-                <div class="card">
-                    <figure>
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/bathroom.jpg" alt="img02" />
-                        <figcaption class="gradient">
-                            <h2>Brooklyn,NY</h2>
-                            <p>Study - walnut - hand made inlay and leather top desk, leather seat armchair set with the Empire style bookcase</p>
-                            <a href="#" class="card-btn">See project</a>
-                        </figcaption>	
-                    </figure>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-12 col-md-6 col-sm-6">
-                <div class="card">
-                    <figure>
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/4.jpg" alt="img02" />
-                        <figcaption class="gradient">
-                            <h2>Extra</h2>
-                            <p>Study - walnut - hand made inlay and leather top desk, leather seat armchair set with the Empire style bookcase</p>
-                            <a href="#" class="card-btn">See project</a>
-                        </figcaption>	
-                    </figure>
-                </div>
-            </div>-->
-
 
         </div>
 
@@ -231,7 +199,7 @@ get_header();
 
     <div class="news-section">
         <div class="row">
-            <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12">
+<!--            <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12">
                 <div class="pattern">
                     <div class="row">
                         <div class="col-lg-7 col-xs-12 col-md-12 col-sm-12 pull-right">
@@ -246,7 +214,8 @@ get_header();
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
+<?php echo do_shortcode('[wcp_NewsLetter_Form]'); ?>
 
             <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12">
                 <div class="testi-wrap">

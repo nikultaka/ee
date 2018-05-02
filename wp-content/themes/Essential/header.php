@@ -66,11 +66,11 @@
                                 <ul>
                                     <li>
                                         <i class="ee-mobile"></i>
-                                        (917) 796 0450 / (609) 385 3095
+                                       <?php echo get_site_option( 'wcp_contact_number' ); ?>  /  <?php echo get_site_option( 'wcp_office_number' ); ?>
                                     </li>
                                     <li>
                                         <i class="ee-email"></i>
-                                        <a href="mailto:<?php echo get_option( 'admin_email' );?>"><?php echo get_option( 'admin_email' );?></a>
+                                        <a href="mailto:<?php echo get_site_option( 'wcp_email' );?>"><?php echo get_site_option( 'wcp_email' );?></a>
                                     </li>
 <!--                                    info@eeleganceinc.com-->
                                 </ul>
@@ -111,12 +111,12 @@
 
                                                 <div class="sub-social">
                                                     <ul>
-                                                        <li><a href="#"><i class="ee-facebook"></i></a></li>
-                                                        <li><a href="#"><i class="ee-twitter"></i></a></li>
-                                                        <li><a href="#"><i class="ee-linkedin"></i></a></li>
-                                                        <li><a href="#"><i class="ee-pinterest"></i></a></li>
-                                                        <li><a href="#"><i class="ee-instagram"></i></a></li>
-                                                        <li><a href="#"><i class="ee-houzz"></i></a></li>
+                                                        <li><a href="<?php echo get_site_option( 'wcp_fb_link' );?>"><i class="ee-facebook"></i></a></li>
+                                                        <li><a href="<?php echo get_site_option( 'wcp_tw_link' );?>"><i class="ee-twitter"></i></a></li>
+                                                        <li><a href="<?php echo get_site_option( 'wcp_lin_link' );?>"><i class="ee-linkedin"></i></a></li>
+                                                        <li><a href="<?php echo get_site_option( 'wcp_fb_link' );?>"><i class="ee-pinterest"></i></a></li>
+                                                        <li><a href="<?php echo get_site_option( 'wcp_in_link' );?>"><i class="ee-instagram"></i></a></li>
+                                                        <li><a href="<?php echo get_site_option( 'wcp_fb_link' );?>"><i class="ee-houzz"></i></a></li>
                                                     </ul>
                                                 </div>
 
