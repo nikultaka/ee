@@ -8,9 +8,11 @@ Theme URI: http://wordpress.org/themes/Essential
     $posts = get_posts( $args );
     $homnepost = array( 'numberposts' => 1, 'category_name' => 'home' );
     $home = get_posts( $homnepost );
+    $testimonialpost = array( 'numberposts' => 3, 'category_name' => 'testimonial' );
+    $testimonial = get_posts( $testimonialpost );
     
 //    echo '<pre>';
-//    print_r($short_description);
+//    print_r($testimonial);
 //    die;
      
     get_header();
@@ -75,7 +77,7 @@ $short_description= get_field('short_discription',$home_post->ID);
                                     <p><?php echo $short_description;?></p>
 
                                    
-                                    <a class="read-bt" target="_blank" href="#">Read More</a>
+                                    <a class="read-bt" target="_blank" href="<?php echo site_url(); ?>/about-us">Read More</a>
                                 </figcaption>
                             </div>
                         </div>
@@ -139,7 +141,7 @@ $short_description= get_field('short_discription',$home_post->ID);
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                 <div>
-                    <a class="ee-btn" target="_blank" href="#">Visit Portfolio</a>
+                    <a class="ee-btn" target="_blank" href="<?php echo site_url(); ?>/portfolio">Visit Portfolio</a>
                 </div>
             </div>
         </div>
@@ -223,8 +225,29 @@ $short_description= get_field('short_discription',$home_post->ID);
                         <div class="row">
                             <div class="col-lg-7 col-xs-12 col-md-12 col-sm-12">
                                 <div class="single-items">
-
+<?php                                        foreach ($testimonial as $testimonial_post){
+    $short_description_portfolio= get_field('short_discription',$testimonial_post->ID);  
+    ?>
+                                     <?php if (has_post_thumbnail( $testimonial_post->ID ) ): ?>
+                    <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $testimonial_post->ID ), 'single-post-thumbnail' ); ?>
+                   
+               
+                  <?php endif; ?>
                                     <div class="client-quote">
+                                        <figure class="client-img">
+                                            <img alt="client" src="<?php echo $image[0]; ?>">
+                                        </figure>
+                                        <p>
+                                          <?php echo $short_description_portfolio; ?>
+                                        </p>
+                                        <div class="client-name">
+                                            <span><?php echo $testimonial_post->post_title; ?></span> 
+                                            <span class="last-nm">Trump House</span>
+                                        </div>										
+                                    </div>
+<?php }?>
+
+<!--                                    <div class="client-quote">
                                         <figure class="client-img">
                                             <img alt="client" src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/client1.jpg">
                                         </figure>
@@ -249,21 +272,7 @@ $short_description= get_field('short_discription',$home_post->ID);
                                             <span>- Kevin Francis</span> 
                                             <span class="last-nm">Trump House</span>
                                         </div>										
-                                    </div>
-
-
-                                    <div class="client-quote">
-                                        <figure class="client-img">
-                                            <img alt="client" src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/client1.jpg">
-                                        </figure>
-                                        <p>
-                                            I have scored EE out of 5, 5 being the highest score, I give it a 5. I really enjoyed this product I have used it for about 5 shaves. The lubrication for my razor was great and I don't use high quality razors
-                                        </p>
-                                        <div class="client-name">
-                                            <span>- Kevin Francis</span> 
-                                            <span class="last-nm">Trump House</span>
-                                        </div>										
-                                    </div>
+                                    </div>-->
 
                                 </div>
                             </div>

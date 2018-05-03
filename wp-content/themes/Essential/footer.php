@@ -53,7 +53,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-0">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <p class="ee-copy copy">© Essential Elegance Inc. 2017.</p>				
+                        <p class="ee-copy copy">&copy; Essential Elegance Inc. 2017.</p>				
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <p class="conti-copy continuum"> Design & Developed by <a class="orange" target="_blank" href="#">Continuum</a></p>
